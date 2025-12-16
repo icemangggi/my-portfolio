@@ -42,3 +42,33 @@ function switchChannel(channelName, btnElement) {
 console.log('SYSTEM READY');
 console.log('RESOLUTION: 480i');
 console.log('COLOR: PHOSPHOR GREEN');
+
+// Function to open project details
+function openProjectDetail(cardElement) {
+    // 1. Get Data
+    const title = cardElement.getAttribute('data-title');
+    const desc = cardElement.getAttribute('data-desc');
+    const imgInfo = cardElement.getAttribute('data-img');
+    const tagsString = cardElement.getAttribute('data-tags');
+
+    // 2. Populate Detail View
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('detail-desc').innerText = desc;
+    document.getElementById('detail-img').src = imgInfo;
+
+    // Tags
+    const tagsContainer = document.getElementById('detail-tags');
+    tagsContainer.innerHTML = ''; // Clear old tags
+    if (tagsString) {
+        const tags = tagsString.split(',');
+        tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'tag';
+            span.innerText = tag.trim();
+            tagsContainer.appendChild(span);
+        });
+    }
+
+    // 3. Switch Channel
+    switchChannel('detail');
+}

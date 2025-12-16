@@ -72,26 +72,56 @@
                 <!-- Channel 4: PROJECTS -->
                 <div id="channel-projects" class="channel">
                     <h2>CHANNEL 04: ARCHIVES</h2>
+                    <p style="font-size: 1rem; color: #888; margin-bottom: 20px;">[ SELECT A FILE TO INSPECT ]</p>
                     <div class="projects-grid">
-                        <div class="project-card">
+                        <div class="project-card" onclick="openProjectDetail(this)" data-title="STRUCTURAL_DESIGN"
+                            data-desc="Investigation of form and structure using mesh networks. This project explores the relationship between digital mesh generation and physical structural integrity."
+                            data-img="images/work1.png" data-tags="3D,MESH,SKELETON">
                             <div class="project-img"><img src="images/work1.png"></div>
                             <h3>STRUCTURAL_DESIGN</h3>
                             <div class="tags"><span class="tag">3D</span><span class="tag">MESH</span></div>
                         </div>
-                        <div class="project-card">
+                        <div class="project-card" onclick="openProjectDetail(this)" data-title="FORM_EXPLORATION"
+                            data-desc="Organic shape generation and surface detailing. Focusing on curvature continuity and aesthetic flow in 3D space."
+                            data-img="images/work2.png" data-tags="MODELING,SURFACE,ORGANIC">
                             <div class="project-img"><img src="images/work2.png"></div>
                             <h3>FORM_EXPLORATION</h3>
                             <div class="tags"><span class="tag">MODELING</span><span class="tag">Surface</span></div>
                         </div>
-                        <div class="project-card">
+                        <div class="project-card" onclick="openProjectDetail(this)" data-title="INDUSTRIAL_PARTS"
+                            data-desc="Precision modeling of mechanical turbine parts. High-fidelity CAD work suitable for manufacturing specifications."
+                            data-img="images/work3.png" data-tags="CAD,RENDER,MECHANICAL">
                             <div class="project-img"><img src="images/work3.png"></div>
                             <h3>INDUSTRIAL_PARTS</h3>
                             <div class="tags"><span class="tag">CAD</span><span class="tag">RENDER</span></div>
                         </div>
-                        <div class="project-card">
+                        <div class="project-card" onclick="openProjectDetail(this)" data-title="PRODUCT_SKETCH"
+                            data-desc="Product Design: Knife. Transitioning from 2D ideation sketches to final 3D visualization."
+                            data-img="images/work4.png" data-tags="SKETCH,KNIFE,CONCEPT">
                             <div class="project-img"><img src="images/work4.png"></div>
                             <h3>PRODUCT_SKETCH</h3>
                             <div class="tags"><span class="tag">SKETCH</span><span class="tag">KNIFE</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Channel 6: PROJECT DETAIL (Hidden by default) -->
+                <div id="channel-detail" class="channel">
+                    <div class="detail-header">
+                        <h2 id="detail-title">PROJECT_NAME</h2>
+                        <button class="btn-back" onclick="switchChannel('projects')">[ RETURN_TO_ARCHIVES ]</button>
+                    </div>
+
+                    <div class="detail-view">
+                        <div class="detail-img-box">
+                            <img id="detail-img" src="" alt="Project Detail">
+                        </div>
+                        <div class="detail-info-box">
+                            <h3>>> FILE_DESCRIPTION</h3>
+                            <p id="detail-desc">Description text goes here...</p>
+
+                            <h3>>> DATA_TAGS</h3>
+                            <div id="detail-tags" class="tags"></div>
                         </div>
                     </div>
                 </div>
