@@ -1,54 +1,44 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursor2 = document.querySelector('.cursor2');
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.cssText = cursor2.style.cssText = `left: ${e.clientX}px; top: ${e.clientY}px;`;
-    });
+// Function to switch channels with static noise effect
+function switchChannel(channelName, btnElement) {
+    const staticNoise = document.getElementById('staticNoise');
+    const channels = document.querySelectorAll('.channel');
+    const buttons = document.querySelectorAll('.btn-channel');
+    const targetChannel = document.getElementById('channel-' + channelName);
 
-    // Mobile Menu Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links li');
+    // 1. Play Static Noise
+    if (staticNoise) staticNoise.classList.add('active');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('toggle');
-    });
+    // 2. Play Sound (Optional - simplistic approach)
+    // const audio = new Audio('static.mp3'); 
+    // audio.play();
 
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('toggle');
-        });
-    });
+    // 3. Update Buttons UI immediately
+    buttons.forEach(btn => btn.classList.remove('active'));
+    if (btnElement) btnElement.classList.add('active');
 
-    // Scroll Animations
-    const observerOptions = {
-        threshold: 0.1
-    };
+    // 4. Switch Content after a brief delay (while noise is on screen)
+    setTimeout(() => {
+        // Hide all channels
+        channels.forEach(ch => ch.classList.remove('active'));
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once visible
-                // observer.unobserve(entry.target); 
-            }
-        });
-    }, observerOptions);
+        // Show target channel
+        if (targetChannel) {
+            targetChannel.classList.add('active');
+        }
 
-    // Select elements to animate
-    // Note: In HTML I used data-aos attributes as placeholders for a library, 
-    // but here I'll manually target them or add a common class if I didn't load AOS.
-    // Let's select common elements to animate based on the CSS class I added or just generic tags.
-    // I added .fade-up class in CSS, let's apply it to sections or specific elements.
-    
-    const animatedElements = document.querySelectorAll('.section-title, .about-text, .about-image, .skill-card, .project-card, .contact-content');
-    
-    animatedElements.forEach(el => {
-        el.classList.add('fade-up'); // Add the initial hidden class
-        observer.observe(el);
-    });
-});
+        // Scroll CRT display to top
+        const crtContent = document.querySelector('.crt-content');
+        if (crtContent) crtContent.scrollTop = 0;
+
+    }, 200); // Wait 200ms for noise
+
+    // 5. Remove Noise
+    setTimeout(() => {
+        if (staticNoise) staticNoise.classList.remove('active');
+    }, 500); // Noise lasts 500ms total
+}
+
+// Initial System Check
+console.log('SYSTEM READY');
+console.log('RESOLUTION: 480i');
+console.log('COLOR: PHOSPHOR GREEN');
